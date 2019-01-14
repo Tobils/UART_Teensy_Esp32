@@ -1,24 +1,27 @@
-// Ini Esp
-// Nerima data dari si Teensy
+// Ini Esp32
+// Menerima data dari Teensy
 
 #include <HardwareSerial.h>
 HardwareSerial uartTeensy(2);
 String response;
 
-
-void setup() {
+void setup()
+{
   Serial.begin(115200);
   uartTeensy.begin(115200);
 }
 
-void loop() {
+void loop()
+{
   getTeensySerial();
-  // delay(5000);
-  // pushTeensySerial();
+  delay(5000);
+  pushTeensySerial();
 }
 
-void getTeensySerial() {
-  while (uartTeensy.available()) {
+void getTeensySerial()
+{
+  while (uartTeensy.available())
+  {
     char dt[512];
     uartTeensy.readBytes(dt, 512);
     Serial.println(dt, HEX);
@@ -26,7 +29,8 @@ void getTeensySerial() {
   }
 }
 
-void pushTeensySerial(){
+void pushTeensySerial()
+{
   String datas = "\n Balasan dari ESP";
   uartTeensy.println(datas);
   delay(1000);
